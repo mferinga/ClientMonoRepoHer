@@ -14,7 +14,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@client-nx-her/UI": ["libs/themeparks/ui/src/index.ts"],
+      "@client-nx-her/backend/dto": ["libs/backend/dto/src/index.ts"],
+      "@client-nx-her/backend/features": ["libs/backend/features/src/index.ts"],
+      "@client-nx-her/shared/api": ["libs/shared/api/src/index.ts"],
+      "@client-nx-her/themeparks/common": [
+        "libs/themeparks/common/src/index.ts"
+      ],
+      "@client-nx-her/themeparks/features": [
+        "libs/themeparks/features/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
