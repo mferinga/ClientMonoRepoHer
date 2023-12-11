@@ -17,7 +17,12 @@
         "tsConfig": "apps/client-nx-her/tsconfig.app.json",
         "assets": [
           "apps/client-nx-her/src/favicon.ico",
-          "apps/client-nx-her/src/assets"
+          "apps/client-nx-her/src/assets",
+          {
+            "input": "libs/themeparks/features/src/assets",
+            "glob": "**/*",
+            "output": "assets/themeparks"
+          }
         ],
         "styles": ["apps/client-nx-her/src/styles.css",
           "node_modules/bootstrap/dist/css/bootstrap.min.css"],

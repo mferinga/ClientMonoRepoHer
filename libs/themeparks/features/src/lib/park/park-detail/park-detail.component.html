@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-8 offset-md-2 mt-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <p class="mb-0">Parks name:</p>
+          </div>
+          <div class="col-9">
+            <p class="mb-0">{{ park?.name }}</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-3">
+            <p class="mb-0">Parks description:</p>
+          </div>
+          <div class="col-9">
+            <p class="mb-0">{{ park?.description }}</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-3">
+            <p class="mb-0">Address:</p>
+          </div>
+          <div class="col-9">
+            <p class="mb-0">{{ park?.address }}</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-3">
+            <p class="mb-0">Price:</p>
+          </div>
+          <div class="col-9">
+            <p class="mb-0">€{{ park?.price }}</p>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-3">
+            <p class="mb-0">Family focussed:</p>
+          </div>
+          <div class="col-9">
+            <p class="mb-0">{{ park?.FamilyFocussed }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary mt-3 p-2" routerLink="/parks">
+      Back to user list
+    </button>
+  </div>
+</div>

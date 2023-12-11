@@ -26,17 +26,15 @@
         <td>€ {{ park.price }}</td>
         <td>
           <a routerLink="{{ park.id }}/edit">
-            <img
-              src="../../../../assets/img/icons8-pencil-30.png"
-              alt="Edit Icon"
-            />
+            <img src="assets/themeparks/icons8-pencil-30.png" alt="Edit Icon" />
           </a>
-          <!-- <button class="bg-white border-0" (click)="delete(park.id)">
+          <button class="bg-white border-0">
+            <!-- hoort nog in de knop -> (click)="delete(park.id)"-->
             <img
-              src="../../../../assets/img/icons8-remove-30.png"
+              src="/assets/themeparks/icons8-remove-30.png"
               alt="Remove Icon"
             />
-          </button> -->
+          </button>
         </td>
       </tr>
     </tbody>
