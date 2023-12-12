@@ -1,6 +1,5 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { ParkService } from './park.service';
-import { Get, Param, Post, Body } from '@nestjs/common';
 import { IPark } from '@client-nx-her/shared/api';
 import { CreateParkDto } from '@client-nx-her/backend/dto';
 

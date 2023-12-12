@@ -1,1 +1,1 @@
-export * from './lib/park/features.module';
+export * from './lib/features.module';
