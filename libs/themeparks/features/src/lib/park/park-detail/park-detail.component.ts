@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ParkDetailComponent implements OnInit, OnDestroy {
   park: IPark | null = null;
   subscription: Subscription | undefined = undefined;
-  id: number | undefined;
+  id: string | undefined;
 
   constructor(
     private parkService: ParkService,
@@ -21,15 +21,13 @@ export class ParkDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
-      this.id = Number(params.get('id'));
+      this.id = Number(params.get('id')) + '';
       if (this.id) {
         this.subscription = this.parkService
-          .list(this.id)
-          .subscribe((results) => {
-            console.log(`results: ${results}`);
-            if (results != null) {
-              this.park = results[0];
-            }
+          .read(this.id)
+          .subscribe((result) => {
+            console.log('record by id is: ', result);
+            this.park = result;
           });
       } else {
         console.log('Error: id is undefined');
