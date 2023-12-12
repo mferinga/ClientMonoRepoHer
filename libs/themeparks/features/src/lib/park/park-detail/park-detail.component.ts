@@ -22,7 +22,8 @@ export class ParkDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.id = Number(params.get('id')) + '';
-      if (this.id) {
+      console.log('id is: ', this.id);
+      if (this.id != undefined) {
         this.subscription = this.parkService
           .read(this.id)
           .subscribe((result) => {

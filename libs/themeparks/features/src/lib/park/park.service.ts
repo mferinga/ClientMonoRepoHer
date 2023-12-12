@@ -48,10 +48,10 @@ export class ParkService {
    *
    */
   public read(id: string | null, options?: any): Observable<IPark> {
+    this.endpoint += `/${id}`;
     console.log(`read ${this.endpoint}`);
-    const url = `${this.endpoint}/${id}`;
     return this.http
-      .get<ApiResponse<IPark>>(url, {
+      .get<ApiResponse<IPark>>(this.endpoint, {
         ...options,
         ...httpOptions,
       })
