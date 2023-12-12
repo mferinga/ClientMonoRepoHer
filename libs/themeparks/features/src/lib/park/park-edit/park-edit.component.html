@@ -1,1 +1,104 @@
-<p>park-edit works!</p>
+<div class="row">
+  <div class="col-md-8 offset-md-2 mt-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <label class="form-label mb-0" for="park-name">Name:</label>
+          </div>
+          <div class="col-9">
+            <input
+              type="text"
+              id="park-name"
+              class="form-control"
+              value="{{ park?.name }}"
+              placeholder="Type your name here"
+              required
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-3">
+            <label class="form-label mb-0" for="park-description"
+              >Description:</label
+            >
+          </div>
+          <div class="col-9">
+            <input
+              type="text"
+              id="park-description"
+              class="form-control"
+              value="{{ park?.description }}"
+              required
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-3">
+            <label class="form-label mb-0" for="park-address">Address:</label>
+          </div>
+          <div class="col-9">
+            <input
+              type="text"
+              id="park-address"
+              class="form-control"
+              value="{{ park?.address }}"
+              required
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-3">
+            <label class="form-label mb-0" for="park-price">Price:</label>
+          </div>
+          <div class="col-9">
+            <input
+              type="number"
+              id="park-price"
+              class="form-control"
+              value="{{ park?.price }}"
+              required
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col-3">
+            <label class="form-label mb-0" for="park-is-family-focussed"
+              >Family Focussed:</label
+            >
+          </div>
+          <div class="col-9">
+            <input
+              type="checkbox"
+              id="park-is-family-focussed"
+              class="form-check-input"
+              [checked]="park?.FamilyFocussed"
+              required
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <button
+          id="save_button"
+          (click)="save()"
+          class="btn btn-success mt-3 py-2 px-5"
+        >
+          Save
+        </button>
+      </div>
+      <div class="col-3">
+        <button class="btn btn-info mt-3 py-2" routerLink="/parks">
+          Back to park list
+        </button>
+      </div>
+    </div>
+    <div class="row"></div>
+  </div>
+</div>
