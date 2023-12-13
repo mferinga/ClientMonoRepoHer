@@ -40,7 +40,10 @@ export class ParkService {
   }
 
   create(
-    park: Pick<IPark, 'name' | 'description' | 'address' | 'price'>
+    park: Pick<
+      IPark,
+      'name' | 'description' | 'address' | 'price' | 'FamilyFocussed'
+    >
   ): IPark {
     Logger.log('create', this.TAG);
     const current = this.parks$.value;
@@ -52,5 +55,24 @@ export class ParkService {
     };
     this.parks$.next([...current, newPark]);
     return newPark;
+  }
+
+  edit(
+    id: string,
+    park: Pick<
+      IPark,
+      'name' | 'description' | 'address' | 'price' | 'FamilyFocussed'
+    >
+  ): IPark {
+    Logger.log(`edit(${id})`, this.TAG);
+    const current = this.parks$.value;
+    const index = current.findIndex((p) => p.id === id);
+    if (index === -1) {
+      throw new NotFoundException(`Park could not be found!`);
+    }
+    const editedPark = { ...current[index], ...park };
+    current[index] = editedPark;
+    this.parks$.next(current);
+    return editedPark;
   }
 }

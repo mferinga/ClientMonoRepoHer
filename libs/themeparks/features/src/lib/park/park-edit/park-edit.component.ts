@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { ParkService } from '../park.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPark } from '@client-nx-her/shared/api';
@@ -40,55 +39,47 @@ export class ParkEditComponent {
   }
 
   save(): void {
-    this.router.navigate(['..'], { relativeTo: this.route });
+    const name = (document.getElementById('park-name') as HTMLInputElement)
+      .value;
+    const description = (
+      document.getElementById('park-description') as HTMLInputElement
+    ).value;
+    const price = Number(
+      (document.getElementById('park-price') as HTMLInputElement).value
+    );
+    const familyFocussed = Boolean(
+      (document.getElementById('park-is-family-focussed') as HTMLInputElement)
+        .checked
+    );
+    const address = (
+      document.getElementById('park-address') as HTMLInputElement
+    ).value;
+
+    if (this.id != undefined) {
+      this.parkService.edit({
+        id: this.id,
+        name: name,
+        description: description,
+        price: price,
+        FamilyFocussed: familyFocussed,
+        address: address,
+      });
+    } else {
+      this.parkService.create({
+        id: Math.floor(Math.random() * 10000) + '',
+        name: name,
+        description: description,
+        price: price,
+        FamilyFocussed: familyFocussed,
+        address: address,
+      });
+    }
+    this.router.navigate(['../'], {
+      relativeTo: this.route,
+    });
   }
 
   navigateToParkList(): void {
     this.router.navigate(['../..'], { relativeTo: this.route });
   }
 }
-
-//   save(): void {
-//     var park = new Themepark();
-
-//     var name = (document.getElementById('park-name') as HTMLInputElement).value;
-//     var description = (
-//       document.getElementById('park-description') as HTMLInputElement
-//     ).value;
-//     var price = Number(
-//       (document.getElementById('park-price') as HTMLInputElement).value
-//     );
-//     var familyFocussed = Boolean(
-//       (document.getElementById('park-is-family-focussed') as HTMLInputElement)
-//         .checked
-//     );
-//     var address = (document.getElementById('park-address') as HTMLInputElement)
-//       .value;
-//     var parkid = this.ThemeparkService.getAllParks().length + 1;
-
-//     if (this.parkId) {
-//       parkid = this.parkId;
-//       park = {
-//         id: parkid,
-//         name: name,
-//         description: description,
-//         price: price,
-//         FamilyFocussed: familyFocussed,
-//         Address: address,
-//       };
-//       this.ThemeparkService.editPark(park);
-//     } else {
-//       park = {
-//         id: parkid,
-//         name: name,
-//         description: description,
-//         price: price,
-//         FamilyFocussed: familyFocussed,
-//         Address: address,
-//       };
-//       this.ThemeparkService.addPark(park);
-//     }
-
-//     this.router.navigate(['..'], { relativeTo: this.route });
-//   }
-// }

@@ -48,10 +48,57 @@ export class ParkService {
    *
    */
   public read(id: string | null, options?: any): Observable<IPark> {
-    this.endpoint += `/${id}`;
+    if (this.endpoint.includes(`/${id}`)) {
+      this.endpoint = this.endpoint.replace(`/${id}`, '');
+    } else {
+      this.endpoint += `/${id}`;
+    }
+    if (this.endpoint.includes('/edit')) {
+      this.endpoint = this.endpoint.replace('/edit', '');
+    }
+
     console.log(`read ${this.endpoint}`);
     return this.http
       .get<ApiResponse<IPark>>(this.endpoint, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as IPark),
+        catchError(this.handleError)
+      );
+  }
+
+  /**
+   * Create a new item.
+   *
+   */
+  public create(park: IPark, options?: any): Observable<IPark> {
+    console.log(`create ${this.endpoint}`);
+
+    return this.http
+      .post<ApiResponse<IPark>>(this.endpoint, park, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as IPark),
+        catchError(this.handleError)
+      );
+  }
+
+  /**
+   * Update an existing item.
+   *
+   */
+  public edit(park: IPark, options?: any): Observable<IPark> {
+    console.log(`update ${this.endpoint}`);
+    this.endpoint += `/${park.id}/edit`;
+
+    return this.http
+      .put<ApiResponse<IPark>>(this.endpoint, park, {
         ...options,
         ...httpOptions,
       })

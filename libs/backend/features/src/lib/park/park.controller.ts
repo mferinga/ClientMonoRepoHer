@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { ParkService } from './park.service';
 import { IPark } from '@client-nx-her/shared/api';
-import { CreateParkDto } from '@client-nx-her/backend/dto';
+import { CreateParkDto, UpdateParkDto } from '@client-nx-her/backend/dto';
 
 @Controller('park')
 export class ParkController {
@@ -20,5 +20,10 @@ export class ParkController {
   @Post('')
   create(@Body() data: CreateParkDto): IPark {
     return this.parkService.create(data);
+  }
+
+  @Post(':id')
+  update(@Param('id') id: string, @Body() data: UpdateParkDto): IPark {
+    return this.parkService.edit(id, data);
   }
 }

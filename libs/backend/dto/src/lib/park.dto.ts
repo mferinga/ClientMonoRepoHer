@@ -63,7 +63,7 @@ export class UpsertUpdateDto implements IUpsertPark {
   address!: string;
 }
 
-export class UpdateMealDto implements IUpdatePark {
+export class UpdateParkDto implements IUpdatePark {
   @IsString()
   @IsOptional()
   name!: string;
@@ -72,7 +72,19 @@ export class UpdateMealDto implements IUpdatePark {
   @IsOptional()
   description!: string;
 
+  @IsNumber()
+  @IsOptional()
+  price!: number;
+
   @IsBoolean()
   @IsOptional()
-  completed!: boolean;
+  FamilyFocussed!: boolean;
+
+  @IsString()
+  @IsOptional()
+  address!: string;
+
+  // @IsBoolean()
+  // @IsOptional()
+  // completed!: boolean;
 }
