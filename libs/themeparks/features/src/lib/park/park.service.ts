@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, tap } from 'rxjs/operators';
 import { ApiResponse, IPark } from '@client-nx-her/shared/api';
 import { Injectable } from '@angular/core';
+import { environment } from '@client-nx-her/shared/unit-env';
 
 /**
  * See https://angular.io/guide/http#requesting-data-from-a-server
@@ -19,7 +20,7 @@ export const httpOptions = {
  */
 @Injectable()
 export class ParkService {
-  endpoint = 'http://localhost:3000/api/park';
+  endpoint = environment.dataApiUrl + '/park';
 
   constructor(private readonly http: HttpClient) {}
 
@@ -37,7 +38,10 @@ export class ParkService {
         ...httpOptions,
       })
       .pipe(
-        map((response: any) => response.results as IPark[]),
+        map((response: any) => {
+          const results = response.results;
+          return Array.isArray(results) ? results : [results];
+        }),
         tap(console.log),
         catchError(this.handleError)
       );

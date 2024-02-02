@@ -1,10 +1,55 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { IPark } from '@client-nx-her/shared/api';
 import { BehaviorSubject } from 'rxjs';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { IAttraction } from 'libs/shared/api/src/lib/models/attraction.interface';
 
 @Injectable()
 export class ParkService {
   TAG = 'ParkService';
+
+  private attractions$ = new BehaviorSubject<IAttraction[]>([
+    {
+      id: '0',
+      name: 'Python',
+      description: 'Een achtbaan met twee loopings',
+      parkId: '0',
+      attractionType: 'Coaster',
+      rating: 7,
+    },
+    {
+      id: '1',
+      name: 'Vogel Rok',
+      description: 'Een achtbaan in het donker',
+      parkId: '0',
+      attractionType: 'Coaster',
+      rating: 6,
+    },
+    {
+      id: '2',
+      name: 'Fata Morgana',
+      description: 'Een boottocht door het paleis van de sultan',
+      parkId: '0',
+      attractionType: 'Dark Ride',
+      rating: 8,
+    },
+    {
+      id: '3',
+      name: 'Speed of Sound',
+      description: 'Een achtbaan waarin je achteruit gaat',
+      parkId: '1',
+      attractionType: 'Coaster',
+      rating: 5,
+    },
+    {
+      id: '4',
+      name: 'Goliath',
+      description: 'Een achtbaan met een drop van 46 meter',
+      parkId: '1',
+      attractionType: 'Coaster',
+      rating: 8,
+    },
+  ]);
 
   private parks$ = new BehaviorSubject<IPark[]>([
     {
@@ -14,6 +59,11 @@ export class ParkService {
       price: 45,
       FamilyFocussed: true,
       address: 'Europalaan 1, 5171 KW Kaatsheuvel',
+      attractions: [
+        this.attractions$.value[0],
+        this.attractions$.value[1],
+        this.attractions$.value[2],
+      ],
     },
     {
       id: '1',
@@ -22,6 +72,7 @@ export class ParkService {
       price: 40,
       FamilyFocussed: false,
       address: 'Spijkweg 30, 8256 RJ Biddinghuizen',
+      attractions: [this.attractions$.value[3], this.attractions$.value[4]],
     },
   ]);
 
@@ -42,7 +93,12 @@ export class ParkService {
   create(
     park: Pick<
       IPark,
-      'name' | 'description' | 'address' | 'price' | 'FamilyFocussed'
+      | 'name'
+      | 'description'
+      | 'address'
+      | 'price'
+      | 'FamilyFocussed'
+      | 'attractions'
     >
   ): IPark {
     Logger.log('create', this.TAG);

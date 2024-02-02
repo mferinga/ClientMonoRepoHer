@@ -1,0 +1,22 @@
+.carousel-control-prev,
+.carousel-control-next {
+  width: auto;
+  background: none;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black; /* Change this to the color you want */
+  height: 25px;
+  width: 25px;
+  outline: black;
+  border-radius: 50%;
+}
+
+.carousel-control-prev {
+  left: -20px; /* Adjust this value to position the left arrow */
+}
+
+.carousel-control-next {
+  right: -50px; /* Adjust this value to position the right arrow */
+}

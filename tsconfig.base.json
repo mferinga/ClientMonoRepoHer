@@ -19,6 +19,7 @@
       "@client-nx-her/backend/dto": ["libs/backend/dto/src/index.ts"],
       "@client-nx-her/backend/features": ["libs/backend/features/src/index.ts"],
       "@client-nx-her/shared/api": ["libs/shared/api/src/index.ts"],
+      "@client-nx-her/shared/unit-env": ["libs/shared/unit-env/src/index.ts"],
       "@client-nx-her/themeparks/common": [
         "libs/themeparks/common/src/index.ts"
       ],

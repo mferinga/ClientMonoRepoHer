@@ -63,6 +63,7 @@ export class ParkEditComponent {
         price: price,
         FamilyFocussed: familyFocussed,
         address: address,
+        attractions: [],
       });
     } else {
       this.parkService.create({
@@ -72,6 +73,7 @@ export class ParkEditComponent {
         price: price,
         FamilyFocussed: familyFocussed,
         address: address,
+        attractions: [],
       });
     }
     this.router.navigate(['../'], {

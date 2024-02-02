@@ -4,12 +4,15 @@ import {
   IsBoolean,
   IsOptional,
   IsNumber,
+  IsArray,
 } from 'class-validator';
 import {
   ICreatePark,
   IUpdatePark,
   IUpsertPark,
 } from '@client-nx-her/shared/api';
+// eslint-disable-next-line @nx/enforce-module-boundaries
+import { IAttraction } from 'libs/shared/api/src/lib/models/attraction.interface';
 
 /**
  * Use the `Pick` utility type to extract only the properties we want for
@@ -35,6 +38,10 @@ export class CreateParkDto implements ICreatePark {
   @IsString()
   @IsNotEmpty()
   address!: string;
+
+  @IsArray()
+  @IsNotEmpty()
+  attractions!: IAttraction[];
 }
 
 export class UpsertUpdateDto implements IUpsertPark {
@@ -61,6 +68,10 @@ export class UpsertUpdateDto implements IUpsertPark {
   @IsString()
   @IsNotEmpty()
   address!: string;
+
+  @IsArray()
+  @IsNotEmpty()
+  attractions!: IAttraction[];
 }
 
 export class UpdateParkDto implements IUpdatePark {

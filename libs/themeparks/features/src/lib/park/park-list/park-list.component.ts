@@ -16,14 +16,13 @@ export class ParkListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.parkService.list().subscribe((results) => {
-      console.log(results);
-      // console.log(`results: ${results}`);
       this.parks = results;
-      console.log(`parks: ${this.parks}`);
     });
   }
 
   ngOnDestroy(): void {
-    if (this.subscription) this.subscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
